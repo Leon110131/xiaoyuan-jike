@@ -3534,6 +3534,40 @@
       "formalStatus": "not-merged-not-verified",
       "formalCommit": null,
       "formalValidation": null
+    },
+    {
+      "id": "DOC-20261102-239",
+      "date": "2026-11-02",
+      "request": "修复用户截图反馈的设计预览内容被屏蔽",
+      "group": "reference",
+      "historicalSource": "outputs/小圆记课-界面设计与检查-20261102/preview-server.cjs；outputs/小圆记课-界面设计与检查-20261102/本机预览打开说明.md",
+      "delivery": "独立设计候选本机HTTP打开方式修复，无产品版本变更",
+      "historicalValidation": "8个预览资源HTTP200，非预览文件404；独立浏览器1440宽截图已查看，左右界面实际显示；检查0阻断/1个对照容器宽度提示。原用户查看环境待新链接确认",
+      "compatibility": "仅独立设计预览的本机服务与打开说明；监听127.0.0.1，不暴露项目目录；不修改浏览器安全设置、产品源码/ZIP、存储键、真实数据或正式接入状态",
+      "listedInLegacyPending": false,
+      "disposition": "reference-only",
+      "followedBy": null,
+      "resolution": "原本地HTML查看方式在用户环境被屏蔽，现提供本机HTTP链接；本次实际HTTP与独立浏览器通过不等于原用户查看环境已验证。",
+      "formalStatus": "not-merged-not-verified",
+      "formalCommit": null,
+      "formalValidation": null
+    },
+    {
+      "id": "DOC-20261102-240",
+      "date": "2026-11-02",
+      "request": "用户明确授权将最新小圆记课源码及版本台账上传至Leon110131/xiaoyuan-jike私有仓库",
+      "group": "reference",
+      "historicalSource": "GitHub上传记录-20261102.md；work/github-upload-v0.2.37-20261102；https://github.com/Leon110131/xiaoyuan-jike",
+      "delivery": "v0.2.37完整源码ZIP及版本台账快照已提交GitHub，无新产品版本",
+      "historicalValidation": "725项原源码发布清单匹配；排除私有配置后735项备份ZIP解压读取SHA256全匹配；远端ZIP大小1864769字节、Git blob与本地一致；main备份提交f810b7738ac0ee066714b712cc1163d51d2a808b；常见密钥格式扫描无命中；台账另重跑校验，不重跑历史业务/真机",
+      "compatibility": "原体验源码/ZIP、AppID、存储键、schema2/backup5、主题和真实数据保持；仅私有仓库源码备份，不执行微信上传、云部署、数据迁移、清缓存或正式接入",
+      "listedInLegacyPending": false,
+      "disposition": "reference-only",
+      "followedBy": null,
+      "resolution": "GitHub备份已完成；ZIP内台账为打包时历史快照，仓库外层project-records补入本次及最新登记。GitHub上传不代表微信发布、真机验收或正式合并。",
+      "formalStatus": "not-merged-not-verified",
+      "formalCommit": null,
+      "formalValidation": null
     }
   ],
   "documentationReview": {

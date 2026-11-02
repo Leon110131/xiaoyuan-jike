@@ -378,6 +378,24 @@
     "status": "design-candidate-ready-for-review",
     "adopted": false,
     "productSourceChanged": false,
+    "formalIntegrationStarted": false,
+    "previewUrl": "http://127.0.0.1:4173/",
+    "accessFixRecord": "DOC-20261102-239",
+    "accessVerification": "HTTP resources and independent browser verified; user viewer confirmation pending"
+  },
+  "githubBackup": {
+    "repository": "https://github.com/Leon110131/xiaoyuan-jike",
+    "visibility": "private",
+    "version": "0.2.37",
+    "date": "2026-11-02",
+    "branch": "main",
+    "sourceCommit": "f810b7738ac0ee066714b712cc1163d51d2a808b",
+    "record": "DOC-20261102-240",
+    "receipt": "GitHub上传记录-20261102.md",
+    "archive": "releases/v0.2.37/小圆记课-v0.2.37-清爽工作簿-GitHub源码备份.zip",
+    "archiveSha256": "ebdde4f287b55a04b62bc7408f67bbdbd3b3a8b744267746cf2b598fabc265c8",
+    "productSourceChanged": false,
+    "wechatUploadPerformed": false,
     "formalIntegrationStarted": false
   }
 }

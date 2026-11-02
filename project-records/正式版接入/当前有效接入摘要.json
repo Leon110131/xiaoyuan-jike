@@ -7,9 +7,9 @@
   "formalSync": "not-started",
   "rule": "Module acceptance and current source define implementation. Partial rows retain unaffected behavior; follow chains for changed parts. Historical pending list is not an executable queue.",
   "counts": {
-    "history": 185,
+    "history": 187,
     "adaptationCandidates": 115,
-    "referenceAndEvidence": 70
+    "referenceAndEvidence": 72
   },
   "modules": [
     {
@@ -1676,6 +1676,18 @@
       "id": "DOC-20261102-238",
       "classification": "reference-only",
       "request": "按建议推进现有原生小程序界面设计、交互质量与安全边界检查，保留现有功能",
+      "followedBy": null
+    },
+    {
+      "id": "DOC-20261102-239",
+      "classification": "reference-only",
+      "request": "修复用户截图反馈的设计预览内容被屏蔽",
+      "followedBy": null
+    },
+    {
+      "id": "DOC-20261102-240",
+      "classification": "reference-only",
+      "request": "用户明确授权将最新小圆记课源码及版本台账上传至Leon110131/xiaoyuan-jike私有仓库",
       "followedBy": null
     }
   ],

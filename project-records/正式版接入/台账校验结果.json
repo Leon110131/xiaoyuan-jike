@@ -1,14 +1,14 @@
 {
   "reviewDate": "2026-11-02",
   "experienceVersion": "0.2.37",
-  "ledgerRows": 185,
+  "ledgerRows": 187,
   "legacyPending": 134,
-  "registryRows": 185,
+  "registryRows": 187,
   "supersessionRelations": 30,
   "dispositions": {
     "applicable-pending": 87,
     "partially-updated": 28,
-    "reference-only": 44,
+    "reference-only": 46,
     "replaced": 2,
     "web-preview-only": 1,
     "adoption-evidence": 3,
