@@ -1,0 +1,1696 @@
+{
+  "schemaVersion": 1,
+  "reviewDate": "2026-11-02",
+  "experienceVersion": "0.2.37",
+  "source": "outputs/小圆记课-v0.2.37-清爽工作簿改版体验版",
+  "formalBaseline": "outputs/教练轻记-正式版开发基线-v0.4.1",
+  "formalSync": "not-started",
+  "rule": "Module acceptance and current source define implementation. Partial rows retain unaffected behavior; follow chains for changed parts. Historical pending list is not an executable queue.",
+  "counts": {
+    "history": 185,
+    "adaptationCandidates": 115,
+    "referenceAndEvidence": 70
+  },
+  "modules": [
+    {
+      "id": "data",
+      "name": "事务、存储与备份",
+      "order": 1,
+      "depends": [],
+      "currentPaths": [
+        "utils/store.js",
+        "utils/local-state.js",
+        "utils/validation.js",
+        "utils/page-guard.js",
+        "pages/data-tools/index.js"
+      ],
+      "acceptance": "写入失败整体回滚、恢复前校验/确认、草稿和可选字段保留；只清可信样例，不能清缓存或全量重置。",
+      "requirements": [
+        {
+          "id": "BKP-20261016-22",
+          "request": "修复最新备份复制、补全资料恢复及恢复前验证",
+          "disposition": "applicable-pending",
+          "resolution": null,
+          "coverageChain": [
+            "BKP-20261016-22"
+          ]
+        },
+        {
+          "id": "BKP-20261018-48",
+          "request": "备份v4支持通用计划与新训练快照",
+          "disposition": "partially-updated",
+          "resolution": "备份当前版本为5；通用计划/训练快照及旧备份兼容保留，不降回4。",
+          "coverageChain": [
+            "BKP-20261018-48",
+            "BKP-20261018-56"
+          ]
+        },
+        {
+          "id": "BKP-20261018-56",
+          "request": "v5完整备份纳入未提交训练草稿",
+          "disposition": "applicable-pending",
+          "resolution": null,
+          "coverageChain": [
+            "BKP-20261018-56"
+          ]
+        },
+        {
+          "id": "DAT-20261018-66",
+          "request": "本地事务与保存反馈",
+          "disposition": "applicable-pending",
+          "resolution": null,
+          "coverageChain": [
+            "DAT-20261018-66"
+          ]
+        },
+        {
+          "id": "BKP-20261019-92",
+          "request": "兼容：主题偏好备份与回退",
+          "disposition": "applicable-pending",
+          "resolution": null,
+          "coverageChain": [
+            "BKP-20261019-92"
+          ]
+        }
+      ]
+    },
+    {
+      "id": "members",
+      "name": "会员档案与关联删除",
+      "order": 2,
+      "depends": [
+        "data"
+      ],
+      "currentPaths": [
+        "utils/member-classification.js",
+        "utils/store.js",
+        "pages/member-form/index.js",
+        "pages/members/index.js",
+        "pages/member-detail/index.js",
+        "utils/member-removal.js"
+      ],
+      "acceptance": "六类目标/标签保存立即同步；确认删除会员及全部关联记录，财务/课程/训练和各月份统计重算；保留其他会员和通用模板，取消不写入，失败整体回滚，升级不自动清理旧隐藏会员。 姓名为唯一必填，选填数值空白不拦截，非空非法值仍拒绝。",
+      "requirements": [
+        {
+          "id": "MEM-20261018-61",
+          "request": "修改：六类训练目标",
+          "disposition": "applicable-pending",
+          "resolution": null,
+          "coverageChain": [
+            "MEM-20261018-61"
+          ]
+        },
+        {
+          "id": "MEM-20261018-62",
+          "request": "修改：标签选择与去掉分组输入",
+          "disposition": "applicable-pending",
+          "resolution": null,
+          "coverageChain": [
+            "MEM-20261018-62"
+          ]
+        },
+        {
+          "id": "MEM-20261018-63",
+          "request": "新增：删除此会员确认与历史保留",
+          "disposition": "partially-updated",
+          "resolution": "保留会员详情底部入口与确认提醒；删除后的保留历史/仅移出名单语义由MEM-215替换为会员及关联记录永久删除，不自动追溯旧隐藏会员。",
+          "coverageChain": [
+            "MEM-20261018-63",
+            "MEM-20261020-215"
+          ]
+        },
+        {
+          "id": "MEM-20261018-67",
+          "request": "会员编辑与预约校验",
+          "disposition": "applicable-pending",
+          "resolution": null,
+          "coverageChain": [
+            "MEM-20261018-67"
+          ]
+        },
+        {
+          "id": "MEM-20261019-100",
+          "request": "修改：会员管理六图标",
+          "disposition": "applicable-pending",
+          "resolution": null,
+          "coverageChain": [
+            "MEM-20261019-100"
+          ]
+        },
+        {
+          "id": "MEM-20261019-101",
+          "request": "删除：会员课时包摘要卡片",
+          "disposition": "applicable-pending",
+          "resolution": null,
+          "coverageChain": [
+            "MEM-20261019-101"
+          ]
+        },
+        {
+          "id": "MEM-20261020-112",
+          "request": "修复：近期课程排除取消",
+          "disposition": "applicable-pending",
+          "resolution": null,
+          "coverageChain": [
+            "MEM-20261020-112"
+          ]
+        },
+        {
+          "id": "MEM-20261020-215",
+          "request": "调整：删除会员同时删除全部关联记录及历史财务统计",
+          "disposition": "applicable-pending",
+          "resolution": null,
+          "coverageChain": [
+            "MEM-20261020-215"
+          ]
+        },
+        {
+          "id": "MEM-20261021-216",
+          "request": "调整：只填姓名即可新增会员，选填空值不误拦截",
+          "disposition": "applicable-pending",
+          "resolution": null,
+          "coverageChain": [
+            "MEM-20261021-216"
+          ]
+        }
+      ]
+    },
+    {
+      "id": "courses",
+      "name": "课程、扣课、退课与课包流水",
+      "order": 3,
+      "depends": [
+        "data",
+        "members"
+      ],
+      "currentPaths": [
+        "utils/store.js",
+        "utils/course-removal.js",
+        "utils/recent-courses.js",
+        "utils/ledger-history.js",
+        "pages/calendar/index.js",
+        "pages/packages/index.js",
+        "utils/package-removal.js"
+      ],
+      "acceptance": "完成确认后原子扣课且只扣一次；不足保留草稿；删除已扣课程退回原包并删除课程及关联训练/草稿，课表同步消失；流水删除仅隐藏，不改余额。 PKG-217：删除课包为永久删除本包及其明确关联课程、训练/草稿、流水和财务/报告，重算各月份统计；保留其他课包和会员；空白总课时不可保存，新建/续费默认空白，编辑保持原值。",
+      "requirements": [
+        {
+          "id": "CAL-20261015-01",
+          "request": "修改课程块颜色；修复约课时间覆盖偏移",
+          "disposition": "applicable-pending",
+          "resolution": null,
+          "coverageChain": [
+            "CAL-20261015-01"
+          ]
+        },
+        {
+          "id": "PKG-20261015-15",
+          "request": "课时包点击查看、编辑、删除及统计重算",
+          "disposition": "partially-updated",
+          "resolution": "保留课包详情、编辑及统计重算；删除从已关联包结束隐藏/保留历史改为用户确认的本包及关联课程训练流水财务永久删除，其他课包保持。",
+          "coverageChain": [
+            "PKG-20261015-15",
+            "PKG-20261021-217"
+          ]
+        },
+        {
+          "id": "CAL-20261015-17",
+          "request": "修复完成扣课无响应",
+          "disposition": "applicable-pending",
+          "resolution": null,
+          "coverageChain": [
+            "CAL-20261015-17"
+          ]
+        },
+        {
+          "id": "CAL-20261017-27",
+          "request": "课程预约与完成状态重新配色",
+          "disposition": "applicable-pending",
+          "resolution": null,
+          "coverageChain": [
+            "CAL-20261017-27"
+          ]
+        },
+        {
+          "id": "CAL-20261017-29",
+          "request": "本月排课统计及月列表快捷入口",
+          "disposition": "applicable-pending",
+          "resolution": null,
+          "coverageChain": [
+            "CAL-20261017-29"
+          ]
+        },
+        {
+          "id": "CAL-20261017-35",
+          "request": "去掉本月排课下划线",
+          "disposition": "applicable-pending",
+          "resolution": null,
+          "coverageChain": [
+            "CAL-20261017-35"
+          ]
+        },
+        {
+          "id": "CAL-20261017-36",
+          "request": "日周月范围与课程状态组合筛选",
+          "disposition": "applicable-pending",
+          "resolution": null,
+          "coverageChain": [
+            "CAL-20261017-36"
+          ]
+        },
+        {
+          "id": "CAL-20261018-37",
+          "request": "取消课程详情删除记录",
+          "disposition": "applicable-pending",
+          "resolution": null,
+          "coverageChain": [
+            "CAL-20261018-37"
+          ]
+        },
+        {
+          "id": "CAL-20261018-47",
+          "request": "具体开始时间及完成返回同步排课",
+          "disposition": "applicable-pending",
+          "resolution": null,
+          "coverageChain": [
+            "CAL-20261018-47"
+          ]
+        },
+        {
+          "id": "CAL-20261019-74",
+          "request": "去掉训练场地填写",
+          "disposition": "applicable-pending",
+          "resolution": null,
+          "coverageChain": [
+            "CAL-20261019-74"
+          ]
+        },
+        {
+          "id": "CAL-20261019-75",
+          "request": "取消记录删除同步清理训练",
+          "disposition": "applicable-pending",
+          "resolution": null,
+          "coverageChain": [
+            "CAL-20261019-75"
+          ]
+        },
+        {
+          "id": "CAL-20261019-76",
+          "request": "训练完成确认与原子扣课",
+          "disposition": "applicable-pending",
+          "resolution": null,
+          "coverageChain": [
+            "CAL-20261019-76"
+          ]
+        },
+        {
+          "id": "CAL-20261019-77",
+          "request": "近期课程删除退课及课表联动",
+          "disposition": "applicable-pending",
+          "resolution": null,
+          "coverageChain": [
+            "CAL-20261019-77"
+          ]
+        },
+        {
+          "id": "CAL-20261019-78",
+          "request": "修复：删除课程点击无反馈",
+          "disposition": "applicable-pending",
+          "resolution": null,
+          "coverageChain": [
+            "CAL-20261019-78"
+          ]
+        },
+        {
+          "id": "PKG-20261020-115",
+          "request": "新增：流水确认后移除展示",
+          "disposition": "applicable-pending",
+          "resolution": null,
+          "coverageChain": [
+            "PKG-20261020-115"
+          ]
+        },
+        {
+          "id": "PKG-20261021-217",
+          "request": "修复并调整：课包永久删除关联课程、流水及财务统计",
+          "disposition": "applicable-pending",
+          "resolution": null,
+          "coverageChain": [
+            "PKG-20261021-217"
+          ]
+        },
+        {
+          "id": "PKG-20261021-218",
+          "request": "调整：新增和续费课包默认15节改为空白",
+          "disposition": "applicable-pending",
+          "resolution": null,
+          "coverageChain": [
+            "PKG-20261021-218"
+          ]
+        }
+      ]
+    },
+    {
+      "id": "training",
+      "name": "通用计划、训练记录、草稿与休息",
+      "order": 4,
+      "depends": [
+        "data",
+        "members",
+        "courses"
+      ],
+      "currentPaths": [
+        "utils/plan-templates.js",
+        "utils/training-archive.js",
+        "utils/workout-drafts.js",
+        "utils/workout-draft-page.js",
+        "pages/workout/index.js",
+        "pages/plan-form/index.js",
+        "pages/training/index.js"
+      ],
+      "acceptance": "通用模板不绑定会员；计划版本与旧训练快照保留；一组空白；再次点击动作取消；新增动作；按会员聚合与结束日期筛选；跨页草稿；完成组弹休息窗、末组休息结束收起；无预设缩略图、RPE/RIR入口和排序箭头。",
+      "requirements": [
+        {
+          "id": "TRN-20261015-02",
+          "request": "训练动作由教练添加；移除最低动作数限制",
+          "disposition": "applicable-pending",
+          "resolution": null,
+          "coverageChain": [
+            "TRN-20261015-02"
+          ]
+        },
+        {
+          "id": "EX-20261015-08",
+          "request": "选择动作后继续添加，关闭才返回",
+          "disposition": "applicable-pending",
+          "resolution": null,
+          "coverageChain": [
+            "EX-20261015-08"
+          ]
+        },
+        {
+          "id": "EX-20261015-09",
+          "request": "两级分类固定顺序，只更新结果",
+          "disposition": "applicable-pending",
+          "resolution": null,
+          "coverageChain": [
+            "EX-20261015-09"
+          ]
+        },
+        {
+          "id": "EX-20261015-10",
+          "request": "预设统一4组/8-12/120秒/RPE7-9",
+          "disposition": "partially-updated",
+          "resolution": "新训练一组空白开始；动作库历史默认参数保留，不重新给训练填满4组；RPE/RIR入口按UI-25移除。",
+          "coverageChain": [
+            "EX-20261015-10",
+            "TRN-20261017-24"
+          ]
+        },
+        {
+          "id": "EX-20261015-11",
+          "request": "新增动作选中标记和再次点击取消",
+          "disposition": "applicable-pending",
+          "resolution": null,
+          "coverageChain": [
+            "EX-20261015-11"
+          ]
+        },
+        {
+          "id": "EX-20261015-12",
+          "request": "新增选择窗口内临时创建动作",
+          "disposition": "applicable-pending",
+          "resolution": null,
+          "coverageChain": [
+            "EX-20261015-12"
+          ]
+        },
+        {
+          "id": "TRN-20261015-13",
+          "request": "当日报告/训练列表支持课后编辑及删除",
+          "disposition": "applicable-pending",
+          "resolution": null,
+          "coverageChain": [
+            "TRN-20261015-13"
+          ]
+        },
+        {
+          "id": "TRN-20261015-18",
+          "request": "逐组记录紧凑布局",
+          "disposition": "applicable-pending",
+          "resolution": null,
+          "coverageChain": [
+            "TRN-20261015-18"
+          ]
+        },
+        {
+          "id": "TRN-20261015-19",
+          "request": "长按拖动动作排序",
+          "disposition": "partially-updated",
+          "resolution": "保留长按拖动与取消/保存，删除右侧上下箭头。",
+          "coverageChain": [
+            "TRN-20261015-19",
+            "UI-20261018-54"
+          ]
+        },
+        {
+          "id": "TRN-20261017-24",
+          "request": "一组空白起步、新增空白组与复制上一组",
+          "disposition": "applicable-pending",
+          "resolution": null,
+          "coverageChain": [
+            "TRN-20261017-24"
+          ]
+        },
+        {
+          "id": "IMG-20261017-26",
+          "request": "预设动作示意图和自定义动作图片",
+          "disposition": "partially-updated",
+          "resolution": "停止预设缩略图展示；保留用户上传图片、历史图片路径和资产。",
+          "coverageChain": [
+            "IMG-20261017-26",
+            "EX-20261019-104"
+          ]
+        },
+        {
+          "id": "IMG-20261017-31",
+          "request": "逐动作重绘78张名称匹配示意图",
+          "disposition": "partially-updated",
+          "resolution": "预设重绘图为历史资产，不重新展示；不据此删除图片或备份引用。",
+          "coverageChain": [
+            "IMG-20261017-31",
+            "EX-20261019-104"
+          ]
+        },
+        {
+          "id": "TMR-20261017-32",
+          "request": "完成组自动休息、放大动作内计时及✔提前完成",
+          "disposition": "applicable-pending",
+          "resolution": null,
+          "coverageChain": [
+            "TMR-20261017-32"
+          ]
+        },
+        {
+          "id": "TRN-20261018-38",
+          "request": "组别点击后展示说明式选择",
+          "disposition": "applicable-pending",
+          "resolution": null,
+          "coverageChain": [
+            "TRN-20261018-38"
+          ]
+        },
+        {
+          "id": "TMR-20261018-39",
+          "request": "休息加减10秒及保存实际操作记录",
+          "disposition": "applicable-pending",
+          "resolution": null,
+          "coverageChain": [
+            "TMR-20261018-39"
+          ]
+        },
+        {
+          "id": "TMR-20261018-41",
+          "request": "修复/交互调整：当前动作底部单一休息框及结束隐藏、完成操作保持视口稳定；按最新要求完成勾选不再自动收起，替代TRN-20261017-30；仍可手动收起",
+          "disposition": "partially-updated",
+          "resolution": "内联休息面板被悬浮窗替代；原位稳定和计时保护保留。",
+          "coverageChain": [
+            "TMR-20261018-41",
+            "TMR-20261018-53"
+          ]
+        },
+        {
+          "id": "TMR-20261018-42",
+          "request": "交互变更：时间框点击打开悬浮休息窗、最后一组休息完成后收起并居中；替代41的内联面板，完成勾选仅计时不弹窗，替代30的勾选瞬间收起",
+          "disposition": "partially-updated",
+          "resolution": "仅点击时间框才弹窗已被自动弹窗替代；±10/暂停/关闭继续计时/末组休息后收起保留。",
+          "coverageChain": [
+            "TMR-20261018-42",
+            "TMR-20261018-53"
+          ]
+        },
+        {
+          "id": "IMG-20261018-43",
+          "request": "动作缺图补齐及名称映射",
+          "disposition": "partially-updated",
+          "resolution": "缺图映射保留历史兼容，不恢复预设缩略图。",
+          "coverageChain": [
+            "IMG-20261018-43",
+            "EX-20261019-104"
+          ]
+        },
+        {
+          "id": "PLAN-20261018-44",
+          "request": "通用计划、版本更新与删除",
+          "disposition": "applicable-pending",
+          "resolution": null,
+          "coverageChain": [
+            "PLAN-20261018-44"
+          ]
+        },
+        {
+          "id": "PLAN-20261018-45",
+          "request": "计划动作行点击及完整筛选",
+          "disposition": "applicable-pending",
+          "resolution": null,
+          "coverageChain": [
+            "PLAN-20261018-45"
+          ]
+        },
+        {
+          "id": "TRN-20261018-46",
+          "request": "分层选择训练计划和训练日并确认替换",
+          "disposition": "applicable-pending",
+          "resolution": null,
+          "coverageChain": [
+            "TRN-20261018-46"
+          ]
+        },
+        {
+          "id": "PLAN-20261018-49",
+          "request": "计划卡片点击二级详情",
+          "disposition": "applicable-pending",
+          "resolution": null,
+          "coverageChain": [
+            "PLAN-20261018-49"
+          ]
+        },
+        {
+          "id": "TRN-20261018-50",
+          "request": "会员训练记录聚合与结束日期筛选",
+          "disposition": "applicable-pending",
+          "resolution": null,
+          "coverageChain": [
+            "TRN-20261018-50"
+          ]
+        },
+        {
+          "id": "TRN-20261018-52",
+          "request": "训练草稿跨页面保留且完成后才提交",
+          "disposition": "applicable-pending",
+          "resolution": null,
+          "coverageChain": [
+            "TRN-20261018-52"
+          ]
+        },
+        {
+          "id": "TMR-20261018-53",
+          "request": "完成组后自动打开休息窗",
+          "disposition": "applicable-pending",
+          "resolution": null,
+          "coverageChain": [
+            "TMR-20261018-53"
+          ]
+        },
+        {
+          "id": "TMR-20261018-68",
+          "request": "休息计时同步修复",
+          "disposition": "applicable-pending",
+          "resolution": null,
+          "coverageChain": [
+            "TMR-20261018-68"
+          ]
+        },
+        {
+          "id": "PLAN-20261019-103",
+          "request": "修改与新增：确认计划布局及就地新增动作",
+          "disposition": "applicable-pending",
+          "resolution": null,
+          "coverageChain": [
+            "PLAN-20261019-103"
+          ]
+        },
+        {
+          "id": "EX-20261019-104",
+          "request": "删除展示：预设动作缩略图",
+          "disposition": "applicable-pending",
+          "resolution": null,
+          "coverageChain": [
+            "EX-20261019-104"
+          ]
+        }
+      ]
+    },
+    {
+      "id": "nutrition",
+      "name": "营养规划及数值输入",
+      "order": 5,
+      "depends": [
+        "data",
+        "members"
+      ],
+      "currentPaths": [
+        "utils/tdee-plan.js",
+        "utils/macro-lock-editor.js",
+        "utils/input-continuity.js",
+        "pages/tdee-plan/index.js",
+        "pages/tdee-plan/index.wxml",
+        "pages/tdee-plan/index.wxss",
+        "pages/nutrition-calculator/index.js"
+      ],
+      "acceptance": "空白初始值/活动系数保留；锁定为悬浮窗；0/小数/超限/合计/两项上限、取消/确认/解锁；仅主动应用才保存会员目标；原手机输入问题待复测。",
+      "requirements": [
+        {
+          "id": "NUT-20261015-04",
+          "request": "三个饮食计算方案初始空白，活动系数除外",
+          "disposition": "applicable-pending",
+          "resolution": null,
+          "coverageChain": [
+            "NUT-20261015-04"
+          ]
+        },
+        {
+          "id": "BMI-20261015-05",
+          "request": "工作台新增BMI工具",
+          "disposition": "applicable-pending",
+          "resolution": null,
+          "coverageChain": [
+            "BMI-20261015-05"
+          ]
+        },
+        {
+          "id": "TDEE-20261015-06",
+          "request": "首页新增独立TDEE快速工具",
+          "disposition": "applicable-pending",
+          "resolution": null,
+          "coverageChain": [
+            "TDEE-20261015-06"
+          ]
+        },
+        {
+          "id": "PLAN-20261015-07",
+          "request": "参考图1–4重设计TDEE，优化饮食计算展示",
+          "disposition": "applicable-pending",
+          "resolution": null,
+          "coverageChain": [
+            "PLAN-20261015-07"
+          ]
+        },
+        {
+          "id": "NUM-20261015-20",
+          "request": "重量和RPE小数输入修复",
+          "disposition": "partially-updated",
+          "resolution": "重量小数修复保留；不因旧记录提到RPE而重新添加RPE/RIR入口。",
+          "coverageChain": [
+            "NUM-20261015-20",
+            "UI-20261017-25"
+          ]
+        },
+        {
+          "id": "NUM-20261017-28",
+          "request": "小数点输入保留与补充按键",
+          "disposition": "applicable-pending",
+          "resolution": null,
+          "coverageChain": [
+            "NUM-20261017-28"
+          ]
+        },
+        {
+          "id": "NUT-20261020-109",
+          "request": "修复：TDEE第二步滚动",
+          "disposition": "applicable-pending",
+          "resolution": null,
+          "coverageChain": [
+            "NUT-20261020-109"
+          ]
+        },
+        {
+          "id": "NUT-20261020-118",
+          "request": "修改与修复：营养锁定紧凑悬浮窗",
+          "disposition": "applicable-pending",
+          "resolution": null,
+          "coverageChain": [
+            "NUT-20261020-118"
+          ]
+        }
+      ]
+    },
+    {
+      "id": "reports",
+      "name": "统计、报告与帮助说明",
+      "order": 6,
+      "depends": [
+        "data",
+        "courses",
+        "training"
+      ],
+      "currentPaths": [
+        "utils/cash-records.js",
+        "utils/statistics-details.js",
+        "utils/report-poster.js",
+        "utils/feature-guide.js",
+        "pages/statistics/index.js",
+        "pages/statistics-detail/index.js",
+        "pages/report/index.js",
+        "pages/about-help/index.js"
+      ],
+      "acceptance": "删除人均上课与核算重复卡片；售课到账仅已售课包；三类现金明细只读、统计＋记账；金额对账；报告精准删除不删原训练；帮助只开说明。",
+      "requirements": [
+        {
+          "id": "RPT-20261015-03",
+          "request": "历史报告点击查看、教练可删除",
+          "disposition": "applicable-pending",
+          "resolution": null,
+          "coverageChain": [
+            "RPT-20261015-03"
+          ]
+        },
+        {
+          "id": "EXP-20261015-21",
+          "request": "一键训练报告PNG卡片导出",
+          "disposition": "applicable-pending",
+          "resolution": null,
+          "coverageChain": [
+            "EXP-20261015-21"
+          ]
+        },
+        {
+          "id": "RPT-20261017-34",
+          "request": "单张完整长图报告排版",
+          "disposition": "applicable-pending",
+          "resolution": null,
+          "coverageChain": [
+            "RPT-20261017-34"
+          ]
+        },
+        {
+          "id": "HELP-20261019-80",
+          "request": "修改：功能概览二级说明",
+          "disposition": "applicable-pending",
+          "resolution": null,
+          "coverageChain": [
+            "HELP-20261019-80"
+          ]
+        },
+        {
+          "id": "HELP-20261019-81",
+          "request": "文案：四类简明功能说明",
+          "disposition": "applicable-pending",
+          "resolution": null,
+          "coverageChain": [
+            "HELP-20261019-81"
+          ]
+        },
+        {
+          "id": "STAT-20261019-95",
+          "request": "删除：人均上课功能与残留",
+          "disposition": "applicable-pending",
+          "resolution": null,
+          "coverageChain": [
+            "STAT-20261019-95"
+          ]
+        },
+        {
+          "id": "STAT-20261019-96",
+          "request": "删除：课时核算重复卡片",
+          "disposition": "applicable-pending",
+          "resolution": null,
+          "coverageChain": [
+            "STAT-20261019-96"
+          ]
+        },
+        {
+          "id": "STAT-20261019-97",
+          "request": "修改：售课到账只读课包记录",
+          "disposition": "applicable-pending",
+          "resolution": null,
+          "coverageChain": [
+            "STAT-20261019-97"
+          ]
+        },
+        {
+          "id": "STAT-20261019-98",
+          "request": "修改：现金收支分类只读明细",
+          "disposition": "applicable-pending",
+          "resolution": null,
+          "coverageChain": [
+            "STAT-20261019-98"
+          ]
+        }
+      ]
+    },
+    {
+      "id": "ui",
+      "name": "品牌、12主题、层级与可访问性",
+      "order": 7,
+      "depends": [
+        "members",
+        "courses",
+        "training",
+        "nutrition",
+        "reports"
+      ],
+      "currentPaths": [
+        "app.wxss",
+        "utils/theme.js",
+        "utils/theme-page.js",
+        "utils/theme-palettes.js",
+        "utils/back-navigation.js",
+        "utils/layer-motion.js",
+        "custom-tab-bar/index.js",
+        "assets/themes/blue"
+      ],
+      "acceptance": "按当前v0.2.32整体源码适配：UI-204为最新会员卡/训练档案/辅助操作细节，保留UI-140未被覆盖的表单/字号/触区与UI-201其余页面布局；UI-141完成扣课提示保持。小圆记课品牌、THEME-121十二主题同源主色、初始清透蓝#386BC2、已有主题选择、中性/危险语义、透明防误触区、系统确认框、分层返回与原生输入保护保留。不得逐版覆盖旧样式；A11Y与QA仅作对应版本证据。 当前展示品牌以BND-208为准，旧版历史名称不作为重新改回旧名的依据；不改写用户个人品牌或旧报告。 已确认品牌设计及图形以BND-211为准，BND-210为素材采用证据；保留布局与12主题，用户自有头像/品牌不改写。 当前具体布局和表面按UI-219清爽工作簿，前条未覆盖行为保留；品牌小圆记课及12主题/统计主卡主色不变；可读性A11Y-220、证据QA-221，官方inspector失败与真机未验不标完成。",
+      "requirements": [
+        {
+          "id": "NAV-20261015-14",
+          "request": "修复边缘返回跳过次级窗口直接退出",
+          "disposition": "applicable-pending",
+          "resolution": null,
+          "coverageChain": [
+            "NAV-20261015-14"
+          ]
+        },
+        {
+          "id": "UI-20261015-16",
+          "request": "修复课时包操作蓝框闪现",
+          "disposition": "applicable-pending",
+          "resolution": null,
+          "coverageChain": [
+            "UI-20261015-16"
+          ]
+        },
+        {
+          "id": "UI-20261016-23",
+          "request": "用户指定界面美化版替代当前体验源码",
+          "disposition": "partially-updated",
+          "resolution": "旧美化稿不是当前配色标准，采用最新已确认布局；业务不变的历史核验仍是证据。",
+          "coverageChain": [
+            "UI-20261016-23",
+            "UI-20261019-91"
+          ]
+        },
+        {
+          "id": "UI-20261017-25",
+          "request": "简化逐组布局并移除RPE/RIR功能入口",
+          "disposition": "applicable-pending",
+          "resolution": null,
+          "coverageChain": [
+            "UI-20261017-25"
+          ]
+        },
+        {
+          "id": "UI-20261017-33",
+          "request": "移除动作箭头、标题与卡片空白处展开收起",
+          "disposition": "applicable-pending",
+          "resolution": null,
+          "coverageChain": [
+            "UI-20261017-33"
+          ]
+        },
+        {
+          "id": "UI-20261018-40",
+          "request": "复制配色统一与文字移除触区",
+          "disposition": "applicable-pending",
+          "resolution": null,
+          "coverageChain": [
+            "UI-20261018-40"
+          ]
+        },
+        {
+          "id": "UI-20261018-51",
+          "request": "主题内适量emoji",
+          "disposition": "applicable-pending",
+          "resolution": null,
+          "coverageChain": [
+            "UI-20261018-51"
+          ]
+        },
+        {
+          "id": "UI-20261018-54",
+          "request": "移除排序右侧箭头",
+          "disposition": "applicable-pending",
+          "resolution": null,
+          "coverageChain": [
+            "UI-20261018-54"
+          ]
+        },
+        {
+          "id": "UI-20261018-55",
+          "request": "去掉训练中心动作库摘要",
+          "disposition": "applicable-pending",
+          "resolution": null,
+          "coverageChain": [
+            "UI-20261018-55"
+          ]
+        },
+        {
+          "id": "UI-20261018-57",
+          "request": "布局配色字体与训练视觉层级",
+          "disposition": "partially-updated",
+          "resolution": "保留字阶/输入层级/规范，不恢复旧绿色固定配色。",
+          "coverageChain": [
+            "UI-20261018-57",
+            "THEME-20261020-119",
+            "THEME-20261020-121"
+          ]
+        },
+        {
+          "id": "A11Y-20261018-58",
+          "request": "界面规范与交互细节",
+          "disposition": "applicable-pending",
+          "resolution": null,
+          "coverageChain": [
+            "A11Y-20261018-58"
+          ]
+        },
+        {
+          "id": "UI-20261018-64",
+          "request": "修复：计划详情无法滑动",
+          "disposition": "applicable-pending",
+          "resolution": null,
+          "coverageChain": [
+            "UI-20261018-64"
+          ]
+        },
+        {
+          "id": "UI-20261018-65",
+          "request": "界面优化",
+          "disposition": "partially-updated",
+          "resolution": "后续确认布局覆盖旧UI外观；事务、计时等独立功能需求不受影响。",
+          "coverageChain": [
+            "UI-20261018-65",
+            "UI-20261019-91"
+          ]
+        },
+        {
+          "id": "UI-20261018-69",
+          "request": "昵称可读性修复",
+          "disposition": "applicable-pending",
+          "resolution": null,
+          "coverageChain": [
+            "UI-20261018-69"
+          ]
+        },
+        {
+          "id": "UI-20261018-70",
+          "request": "会员筛选横向布局修复",
+          "disposition": "applicable-pending",
+          "resolution": null,
+          "coverageChain": [
+            "UI-20261018-70"
+          ]
+        },
+        {
+          "id": "UI-20261019-79",
+          "request": "修改：近期课程紧凑布局",
+          "disposition": "applicable-pending",
+          "resolution": null,
+          "coverageChain": [
+            "UI-20261019-79"
+          ]
+        },
+        {
+          "id": "BND-20261019-82",
+          "request": "修改：训课展示名与头像",
+          "disposition": "partially-updated",
+          "resolution": "当前品牌从训课改为小圆记课，现有圆形标记改圆字；保留旧版品牌历史、用户个人品牌、旧报告内容、存储与备份协议，其余功能/布局/12主题不变。",
+          "coverageChain": [
+            "BND-20261019-82",
+            "BND-20261020-208",
+            "BND-20261020-211"
+          ]
+        },
+        {
+          "id": "UI-20261019-83",
+          "request": "修改：全页清透蓝展示",
+          "disposition": "partially-updated",
+          "resolution": "静态清透蓝外观已升级为12主题；清透蓝全局使用#386BC2。",
+          "coverageChain": [
+            "UI-20261019-83",
+            "THEME-20261020-119",
+            "THEME-20261020-121"
+          ]
+        },
+        {
+          "id": "THEME-20261019-90",
+          "request": "新增：确认12主题方案原生落地",
+          "disposition": "applicable-pending",
+          "resolution": null,
+          "coverageChain": [
+            "THEME-20261019-90"
+          ]
+        },
+        {
+          "id": "UI-20261019-91",
+          "request": "修改：按确认稿同步展示与交互",
+          "disposition": "applicable-pending",
+          "resolution": null,
+          "coverageChain": [
+            "UI-20261019-91"
+          ]
+        },
+        {
+          "id": "THEME-20261019-94",
+          "request": "修复：统计圆环与已履约卡片全主题同步",
+          "disposition": "partially-updated",
+          "resolution": "圆环主题同步保留，最终蓝值采用#386BC2。",
+          "coverageChain": [
+            "THEME-20261019-94",
+            "THEME-20261020-119",
+            "THEME-20261020-121"
+          ]
+        },
+        {
+          "id": "UI-20261019-99",
+          "request": "修改：应用内浮窗无背景色",
+          "disposition": "applicable-pending",
+          "resolution": null,
+          "coverageChain": [
+            "UI-20261019-99"
+          ]
+        },
+        {
+          "id": "THEME-20261019-105",
+          "request": "修复：已履约整卡主题主色",
+          "disposition": "partially-updated",
+          "resolution": "已履约整卡主色规则保留；采用当前全局主题源。",
+          "coverageChain": [
+            "THEME-20261019-105",
+            "THEME-20261020-119",
+            "THEME-20261020-121"
+          ]
+        },
+        {
+          "id": "UI-20261019-106",
+          "request": "重做：入口下方紧凑主题浮层",
+          "disposition": "applicable-pending",
+          "resolution": null,
+          "coverageChain": [
+            "UI-20261019-106"
+          ]
+        },
+        {
+          "id": "INPUT-20261020-108",
+          "request": "修复：连续输入与键盘保持",
+          "disposition": "applicable-pending",
+          "resolution": null,
+          "coverageChain": [
+            "INPUT-20261020-108"
+          ]
+        },
+        {
+          "id": "UI-20261020-110",
+          "request": "优化：展开及浮层短过渡",
+          "disposition": "partially-updated",
+          "resolution": "普通浮层短过渡保留；营养输入祖先不做整体位移/透明动画。",
+          "coverageChain": [
+            "UI-20261020-110",
+            "NUT-20261020-118"
+          ]
+        },
+        {
+          "id": "THEME-20261020-111",
+          "request": "修复：已履约精确主色与初始色",
+          "disposition": "partially-updated",
+          "resolution": "默认清透蓝及保留已有选择仍有效；最终蓝值按全局统一。",
+          "coverageChain": [
+            "THEME-20261020-111",
+            "THEME-20261020-119",
+            "THEME-20261020-121"
+          ]
+        },
+        {
+          "id": "INPUT-20261020-114",
+          "request": "修复：原生输入层定位",
+          "disposition": "partially-updated",
+          "resolution": "TDEE采用新紧凑悬浮窗及编辑草稿；其他含原生输入窗口无祖先变换保护保留。",
+          "coverageChain": [
+            "INPUT-20261020-114",
+            "NUT-20261020-118"
+          ]
+        },
+        {
+          "id": "THEME-20261020-116",
+          "request": "统一：清透蓝与双主卡同色",
+          "disposition": "partially-updated",
+          "resolution": "两统计卡同色扩展为所有页面/浮窗/选中状态同源，不能只合并两张卡。",
+          "coverageChain": [
+            "THEME-20261020-116",
+            "THEME-20261020-119",
+            "THEME-20261020-121"
+          ]
+        },
+        {
+          "id": "THEME-20261020-119",
+          "request": "统一：清透蓝全局强调色386BC2",
+          "disposition": "partially-updated",
+          "resolution": "清透蓝386BC2规则保留；从单蓝推广至所有12主题，均以本主题双统计卡现有底色统一全局强调色；白底/浅底/正文/警示保持。",
+          "coverageChain": [
+            "THEME-20261020-119",
+            "THEME-20261020-121"
+          ]
+        },
+        {
+          "id": "THEME-20261020-121",
+          "request": "统一：12主题按统计双卡原底色作为全局主色",
+          "disposition": "applicable-pending",
+          "resolution": null,
+          "coverageChain": [
+            "THEME-20261020-121"
+          ]
+        },
+        {
+          "id": "UI-20261020-124",
+          "request": "设计：清新精修布局、间距、视觉层级与样式",
+          "disposition": "partially-updated",
+          "resolution": "视觉实现按UI-201重新设计；保留原12主题、事件、存储及功能契约，不回放旧的具体间距和卡片样式。",
+          "coverageChain": [
+            "UI-20261020-124",
+            "UI-20261020-201",
+            "UI-20261020-140",
+            "UI-20261020-204",
+            "UI-20261021-219"
+          ]
+        },
+        {
+          "id": "UI-20261020-201",
+          "request": "自主设计：舒适留白与界面层级重设计",
+          "disposition": "partially-updated",
+          "resolution": "会员、训练、表单及浮窗的字阶间距按UI-140进一步精修，其余v0.2.28布局与原验证证据保留；不逐版覆盖旧样式。",
+          "coverageChain": [
+            "UI-20261020-201",
+            "UI-20261020-140",
+            "UI-20261020-204",
+            "UI-20261021-219"
+          ]
+        },
+        {
+          "id": "UI-20261020-140",
+          "request": "精修：会员列表、训练档案、表单及各级浮窗",
+          "disposition": "partially-updated",
+          "resolution": "保留v0.2.31整体排版、输入/触区及多条档案滚动；会员底栏、单条档案高度和辅助操作最新精修以UI-204为准。",
+          "coverageChain": [
+            "UI-20261020-140",
+            "UI-20261020-204",
+            "UI-20261021-219"
+          ]
+        },
+        {
+          "id": "UI-20261020-141",
+          "request": "纠正文案：关联训练完成后确认扣课",
+          "disposition": "applicable-pending",
+          "resolution": null,
+          "coverageChain": [
+            "UI-20261020-141"
+          ]
+        },
+        {
+          "id": "UI-20261020-204",
+          "request": "自主打磨：会员卡、训练档案与记录辅助操作",
+          "disposition": "partially-updated",
+          "resolution": "具体纸面、分区、圆角与列表构图按UI-219清爽工作簿改版；保留未被替代的会员信息/指标、档案单条空态及多条滚动、输入/触区/保存边界和全部业务行为；THEME-121、UI-141、MEM-215/216与PKG-217/218独立有效。",
+          "coverageChain": [
+            "UI-20261020-204",
+            "UI-20261021-219"
+          ]
+        },
+        {
+          "id": "BND-20261020-208",
+          "request": "更名：用户确认品牌为小圆记课",
+          "disposition": "partially-updated",
+          "resolution": "保留小圆记课名称、报告显示名和数据保护语义；过渡圆字头像更新为已确认圆环记事标志，宣传语按BND-211统一。",
+          "coverageChain": [
+            "BND-20261020-208",
+            "BND-20261020-211"
+          ]
+        },
+        {
+          "id": "BND-20261020-211",
+          "request": "采用：用户确认小圆记课品牌设计并接入体验版",
+          "disposition": "applicable-pending",
+          "resolution": null,
+          "coverageChain": [
+            "BND-20261020-211"
+          ]
+        },
+        {
+          "id": "UI-20261021-219",
+          "request": "改版：清爽工作簿新风格与连续档案",
+          "disposition": "applicable-pending",
+          "resolution": null,
+          "coverageChain": [
+            "UI-20261021-219"
+          ]
+        }
+      ]
+    },
+    {
+      "id": "qa",
+      "name": "证据、交付配置与验收",
+      "order": 8,
+      "depends": [
+        "data",
+        "members",
+        "courses",
+        "training",
+        "nutrition",
+        "reports",
+        "ui"
+      ],
+      "currentPaths": [
+        "project.config.json",
+        "tests",
+        "docs/本次验证汇总.json"
+      ],
+      "acceptance": "历史验证只是对应版本证据，不代表正式版已合并；QA-117内JS压缩/配置修改单独适配；网页适配不并入原生包。",
+      "requirements": []
+    }
+  ],
+  "nonImplementation": [
+    {
+      "id": "TOOL-20261017-24",
+      "classification": "reference-only",
+      "request": "安装品牌命名、品牌视觉、图片设计、文案四项技能；核对用户提供v0.2.1美化版内容",
+      "followedBy": null
+    },
+    {
+      "id": "BRAND-20261017-25",
+      "classification": "reference-only",
+      "request": "使用brand-naming设计小程序名称、简称并初评",
+      "followedBy": null
+    },
+    {
+      "id": "BRAND-20261017-26",
+      "classification": "reference-only",
+      "request": "工作人员反馈名称不能含“教练”，用户要求重新设计",
+      "followedBy": null
+    },
+    {
+      "id": "BRAND-20261017-27",
+      "classification": "reference-only",
+      "request": "用户要求再次重新命名",
+      "followedBy": null
+    },
+    {
+      "id": "BRAND-20261017-28",
+      "classification": "reference-only",
+      "request": "用户再次要求重新命名，补充偏好“简约有品牌感，可以稍抽象”",
+      "followedBy": null
+    },
+    {
+      "id": "BRAND-20261017-29",
+      "classification": "reference-only",
+      "request": "用户要求再次重新设计，沿用简约品牌感、稍抽象偏好",
+      "followedBy": null
+    },
+    {
+      "id": "BRAND-20261017-30",
+      "classification": "reference-only",
+      "request": "用户重新选择第三方向“直接看出排课和训练用途”",
+      "followedBy": null
+    },
+    {
+      "id": "BRAND-20261017-31",
+      "classification": "reference-only",
+      "request": "用户继续要求重设计，沿用排课/训练功能直观方向",
+      "followedBy": null
+    },
+    {
+      "id": "BRAND-20261017-32",
+      "classification": "reference-only",
+      "request": "用户确定名称轻记课表、简称轻记，并调用canvas-design开始视觉设计",
+      "followedBy": null
+    },
+    {
+      "id": "BRAND-20261017-33",
+      "classification": "reference-only",
+      "request": "用户要求轻记课表再设计一版视觉",
+      "followedBy": null
+    },
+    {
+      "id": "BRAND-20261017-34",
+      "classification": "reference-only",
+      "request": "用户选择第一版绿色视觉继续",
+      "followedBy": null
+    },
+    {
+      "id": "BRAND-20261017-35",
+      "classification": "reference-only",
+      "request": "用户指定桌面旧HTML为准，仅微调头像呈现、版式文字",
+      "followedBy": null
+    },
+    {
+      "id": "BRAND-20261017-36",
+      "classification": "reference-only",
+      "request": "用户指定桌面旧宣传图HTML，明确换为新头像并调整排版文案",
+      "followedBy": null
+    },
+    {
+      "id": "BRAND-20261017-37",
+      "classification": "reference-only",
+      "request": "用户调用copywriting开始文案设计",
+      "followedBy": null
+    },
+    {
+      "id": "TRN-20261017-30",
+      "classification": "replaced",
+      "request": "最后一组完成自动收起当前动作",
+      "followedBy": "TMR-20261018-53"
+    },
+    {
+      "id": "QA-20261018-59",
+      "classification": "web-preview-only",
+      "request": "网页预览子页返回保留位置",
+      "followedBy": null
+    },
+    {
+      "id": "DOC-20261018-60",
+      "classification": "adoption-evidence",
+      "request": "用户指定桌面v0.2.10为最新体验版，确认来源并建立正式版衔接记录",
+      "followedBy": null
+    },
+    {
+      "id": "DOC-20261018-71",
+      "classification": "adoption-evidence",
+      "request": "用户指定最新体验版采用确认",
+      "followedBy": null
+    },
+    {
+      "id": "BND-20261019-72",
+      "classification": "replaced",
+      "request": "修改：产品更名为轻记课表",
+      "followedBy": "BND-20261019-82"
+    },
+    {
+      "id": "MEDIA-20261019-73",
+      "classification": "reference-only",
+      "request": "素材：抖音排课到分享演示重制",
+      "followedBy": null
+    },
+    {
+      "id": "BRAND-20261019-82",
+      "classification": "reference-only",
+      "request": "用户要求重新设计名称，必须含“课”字",
+      "followedBy": null
+    },
+    {
+      "id": "BRAND-20261019-83",
+      "classification": "reference-only",
+      "request": "用户再次要求含课字名称重新设计",
+      "followedBy": null
+    },
+    {
+      "id": "BRAND-20261019-84",
+      "classification": "reference-only",
+      "request": "用户继续要求含课字名称再设计一版",
+      "followedBy": null
+    },
+    {
+      "id": "BRAND-20261019-85",
+      "classification": "reference-only",
+      "request": "用户要求调用中文product-naming生成名称",
+      "followedBy": null
+    },
+    {
+      "id": "BRAND-20261019-86",
+      "classification": "reference-only",
+      "request": "用户选择product-naming路线A/B/C结合",
+      "followedBy": null
+    },
+    {
+      "id": "BRAND-20261019-87",
+      "classification": "reference-only",
+      "request": "用户指定轻课品牌资料改名为训课，头像不变",
+      "followedBy": null
+    },
+    {
+      "id": "BRAND-20261019-88",
+      "classification": "reference-only",
+      "request": "三处品牌批注修改：头像字训、底部删除、右上排课工具",
+      "followedBy": null
+    },
+    {
+      "id": "BRAND-20261019-89",
+      "classification": "reference-only",
+      "request": "宣传图两行标题对调",
+      "followedBy": null
+    },
+    {
+      "id": "QA-20261019-84",
+      "classification": "verification-evidence",
+      "request": "核验：全页与窗口品牌覆盖",
+      "followedBy": null
+    },
+    {
+      "id": "QA-20261019-93",
+      "classification": "verification-evidence",
+      "request": "核验：原生主题与功能保留",
+      "followedBy": null
+    },
+    {
+      "id": "QA-20261019-102",
+      "classification": "verification-evidence",
+      "request": "核验：八项要求、数据兼容与残留",
+      "followedBy": null
+    },
+    {
+      "id": "QA-20261019-107",
+      "classification": "verification-evidence",
+      "request": "核验：计划交互、主题、编译及兼容",
+      "followedBy": null
+    },
+    {
+      "id": "QA-20261020-113",
+      "classification": "verification-evidence",
+      "request": "核验：输入滚动、短过渡及兼容",
+      "followedBy": null
+    },
+    {
+      "id": "QA-20261020-117",
+      "classification": "verification-evidence",
+      "request": "核验与交付配置：输入/流水/颜色",
+      "followedBy": null
+    },
+    {
+      "id": "QA-20261020-120",
+      "classification": "verification-evidence",
+      "request": "核验与交付：悬浮输入/全局主题/数据保留",
+      "followedBy": null
+    },
+    {
+      "id": "QA-20261020-122",
+      "classification": "verification-evidence",
+      "request": "核验：12色全页浮层及颜色和功能保持",
+      "followedBy": null
+    },
+    {
+      "id": "QA-20261020-123",
+      "classification": "verification-evidence",
+      "request": "追加核验：上传前同存储升级数据保留",
+      "followedBy": null
+    },
+    {
+      "id": "UI-20261020-125",
+      "classification": "verification-evidence",
+      "request": "检查：界面规范与交互细节",
+      "followedBy": null
+    },
+    {
+      "id": "QA-20261020-126",
+      "classification": "verification-evidence",
+      "request": "核验：美化后功能、数据、主题与归档保持",
+      "followedBy": null
+    },
+    {
+      "id": "A11Y-20261020-202",
+      "classification": "verification-evidence",
+      "request": "自主检查：界面规范与交互细节",
+      "followedBy": null
+    },
+    {
+      "id": "QA-20261020-203",
+      "classification": "verification-evidence",
+      "request": "核验：自主重设计后功能及数据保持",
+      "followedBy": null
+    },
+    {
+      "id": "QA-20261020-142",
+      "classification": "verification-evidence",
+      "request": "核验：细节精修后的功能、主题、数据与归档",
+      "followedBy": null
+    },
+    {
+      "id": "A11Y-20261020-205",
+      "classification": "verification-evidence",
+      "request": "自主检查：触区、长姓名、输入与档案边界",
+      "followedBy": null
+    },
+    {
+      "id": "QA-20261020-206",
+      "classification": "verification-evidence",
+      "request": "核验：自主打磨后功能、主题与数据兼容",
+      "followedBy": null
+    },
+    {
+      "id": "DOC-20261020-207",
+      "classification": "reference-only",
+      "request": "整理：锁定v0.2.32当前接入入口、分类摘要及覆盖链核验",
+      "followedBy": null
+    },
+    {
+      "id": "QA-20261020-209",
+      "classification": "verification-evidence",
+      "request": "核验：品牌更名、数据保持与交付",
+      "followedBy": null
+    },
+    {
+      "id": "BND-20261020-210",
+      "classification": "adoption-evidence",
+      "request": "品牌素材：小圆记课全套头像与宣传资料重设计",
+      "followedBy": null
+    },
+    {
+      "id": "QA-20261020-212",
+      "classification": "verification-evidence",
+      "request": "核验：品牌设计采用、源码与数据保持",
+      "followedBy": null
+    },
+    {
+      "id": "DOC-20261020-213",
+      "classification": "reference-only",
+      "request": "推广计划：按v0.2.34重做体验招募、辅导和回访流程",
+      "followedBy": null
+    },
+    {
+      "id": "DOC-20261020-214",
+      "classification": "reference-only",
+      "request": "使用文档：v0.2.34教练首次任务及功能简明指南",
+      "followedBy": null
+    },
+    {
+      "id": "DOC-20261021-219",
+      "classification": "reference-only",
+      "request": "整理：接入清单消除会员与课包删除旧规则残留",
+      "followedBy": null
+    },
+    {
+      "id": "A11Y-20261021-220",
+      "classification": "verification-evidence",
+      "request": "核验：工作簿层级、可读性、触区与输入保护",
+      "followedBy": null
+    },
+    {
+      "id": "QA-20261021-221",
+      "classification": "verification-evidence",
+      "request": "核验：工作簿改版功能、最新业务及数据兼容",
+      "followedBy": null
+    },
+    {
+      "id": "TOOL-20261025-222",
+      "classification": "reference-only",
+      "request": "安装图文Skill、创建小圆记课每日推广统一入口并制作首期功能推广测试",
+      "followedBy": null
+    },
+    {
+      "id": "DOC-20261025-223",
+      "classification": "reference-only",
+      "request": "调用小圆记课每日推广Skill生成会员档案主题素材",
+      "followedBy": null
+    },
+    {
+      "id": "DOC-20261025-224",
+      "classification": "reference-only",
+      "request": "用户最新要求直接出图，完成会员档案主题1封面与4正文图",
+      "followedBy": null
+    },
+    {
+      "id": "DOC-20261025-225",
+      "classification": "reference-only",
+      "request": "根据当前体验版实际界面制作箭头与标签功能推广样例",
+      "followedBy": null
+    },
+    {
+      "id": "TOOL-20261025-226",
+      "classification": "reference-only",
+      "request": "以后介绍图必须用小圆记课实际界面加标签/箭头/标注，并从第一个主题重新生成推广",
+      "followedBy": null
+    },
+    {
+      "id": "TOOL-20261025-227",
+      "classification": "reference-only",
+      "request": "带用户逐步试跑口播稿→用户录音→按录音匹配素材剪辑；本次先准备环境和录音稿",
+      "followedBy": null
+    },
+    {
+      "id": "DOC-20261025-228",
+      "classification": "reference-only",
+      "request": "用户上传真人录音，继续完成课程安排与筛选原声视频试片",
+      "followedBy": null
+    },
+    {
+      "id": "TOOL-20261025-229",
+      "classification": "reference-only",
+      "request": "安装指定MotionGit仓库，在重新剪辑前说明剪辑条件、功能和特点",
+      "followedBy": null
+    },
+    {
+      "id": "DOC-20261026-230",
+      "classification": "reference-only",
+      "request": "用户授权直接开始使用已下载MotionGit模板重新剪辑课程安排原声视频",
+      "followedBy": null
+    },
+    {
+      "id": "TOOL-20261026-231",
+      "classification": "reference-only",
+      "request": "用户认可MotionGit剪辑，要求每日推广先选题写稿、等原声/截图/录屏/人物素材后自动匹配设计剪辑",
+      "followedBy": null
+    },
+    {
+      "id": "TOOL-20261026-232",
+      "classification": "reference-only",
+      "request": "用户指定以后剪辑取消常驻箭头，按讲解突出按钮；去除画面MotionGit署名/时码/左下版本来源字样；指定调用语后直接推进",
+      "followedBy": null
+    },
+    {
+      "id": "DOC-20261027-233",
+      "classification": "reference-only",
+      "request": "调用每日推广Skill生成2026-10-27推广，先选题写稿后等待用户素材",
+      "followedBy": null
+    },
+    {
+      "id": "DOC-20261027-234",
+      "classification": "reference-only",
+      "request": "评估全功能图片素材库、HyperFrames横版演示、GPT分镜与Remotion复用动效模板的可行性及复杂度",
+      "followedBy": null
+    },
+    {
+      "id": "DOC-20261027-235",
+      "classification": "reference-only",
+      "request": "尝试制作功能截图库＋HyperFrames横屏样片查看效果",
+      "followedBy": null
+    },
+    {
+      "id": "DOC-20261027-236",
+      "classification": "reference-only",
+      "request": "用户不满意HyperFrames试片，明确继续之前的小圆记课每日推广Skill",
+      "followedBy": null
+    },
+    {
+      "id": "DOC-20261027-237",
+      "classification": "reference-only",
+      "request": "用户提供课时核对录音，继续会员档案主题并用原推广Skill自动匹配剪辑",
+      "followedBy": null
+    },
+    {
+      "id": "DOC-20261102-238",
+      "classification": "reference-only",
+      "request": "按建议推进现有原生小程序界面设计、交互质量与安全边界检查，保留现有功能",
+      "followedBy": null
+    }
+  ],
+  "dataContract": {
+    "experienceStorage": "leonCoachExperienceStateV1",
+    "formalStorage": "leonDemoStateV2",
+    "schemaVersion": 2,
+    "backupVersion": 5,
+    "migration": "not implemented or validated by this documentation review"
+  },
+  "blockedAcceptance": [
+    "原手机输入、键盘与手势待验",
+    "旧手机数据异常根因未定",
+    "iOS/Android、导出/相册、后台计时与读屏待验",
+    "正式云权限、身份、支付与跨作用域数据迁移未完成"
+  ],
+  "reviewRecord": "DOC-20261020-207"
+}

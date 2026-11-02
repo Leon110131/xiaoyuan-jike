@@ -1,0 +1,90 @@
+{
+  "reviewDate": "2026-11-02",
+  "experienceVersion": "0.2.37",
+  "ledgerRows": 185,
+  "legacyPending": 134,
+  "registryRows": 185,
+  "supersessionRelations": 30,
+  "dispositions": {
+    "applicable-pending": 87,
+    "partially-updated": 28,
+    "reference-only": 44,
+    "replaced": 2,
+    "web-preview-only": 1,
+    "adoption-evidence": 3,
+    "verification-evidence": 20
+  },
+  "checks": [
+    {
+      "name": "历史原行逐条保留（不重写历史验证结论）",
+      "pass": true
+    },
+    {
+      "name": "完整编号唯一且所有台账行登记",
+      "pass": true
+    },
+    {
+      "name": "旧pending全部有台账与登记，不按数字尾号合并",
+      "pass": true
+    },
+    {
+      "name": "当前源/版本/正式基线与登记一致",
+      "pass": true
+    },
+    {
+      "name": "覆盖链有依据且无循环",
+      "pass": true
+    },
+    {
+      "name": "模块依赖有序，无业务编号落入reference",
+      "pass": true
+    },
+    {
+      "name": "当前模块路径均存在",
+      "pass": true
+    },
+    {
+      "name": "正式合并状态未误标完成",
+      "pass": true
+    },
+    {
+      "name": "弃用方案无重新引入功能行",
+      "pass": true
+    },
+    {
+      "name": "两版源码及体验ZIP均保持整理前SHA256",
+      "pass": true
+    },
+    {
+      "name": "当前已交付源码manifest逐项匹配",
+      "pass": true
+    },
+    {
+      "name": "有效摘要与权威索引及模块验收一致",
+      "pass": true
+    },
+    {
+      "name": "全部登记恰好分类一次且候选不混入QA参考",
+      "pass": true
+    },
+    {
+      "name": "覆盖表和逐条覆盖链一致且说明完整",
+      "pass": true
+    },
+    {
+      "name": "文档整理前152条历史行与原登记语义保持",
+      "pass": true
+    },
+    {
+      "name": "整理证据单独归档且693文件和ZIP未改写",
+      "pass": true
+    }
+  ],
+  "passed": 16,
+  "errors": [],
+  "protectedFiles": 974,
+  "manifestFiles": 725,
+  "formalMerged": false,
+  "wechatUploadPerformed": false,
+  "physicalInputVerified": false
+}
