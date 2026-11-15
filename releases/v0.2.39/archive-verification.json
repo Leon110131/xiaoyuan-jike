@@ -1,0 +1,15 @@
+{
+  "version": "v0.2.39",
+  "edition": "coach-experience",
+  "archive": "小圆记课-v0.2.39-四栏原生体验版-GitHub源码备份.zip",
+  "bytes": 1889153,
+  "sha256": "185869e304d4b44556c0e0ef8ee077d2e7b45fca34d76b3d080feb553d80c546",
+  "fileCount": 809,
+  "runtimeFilesMatched": 532,
+  "excluded": [
+    "project.private.config.json",
+    "node_modules/",
+    "web-preview/"
+  ],
+  "verifiedDate": "2026-11-15"
+}
